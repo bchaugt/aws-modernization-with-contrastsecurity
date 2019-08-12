@@ -1,6 +1,7 @@
 ---
 title: "Contrast Security DevSecOps Workshop"
 chapter: true
+weight : 1
 ---
 
 # Contrast Security DevSecOps Workshop
@@ -8,20 +9,20 @@ chapter: true
 ### Welcome
 
 <p style='text-align: left;'>
-    In this workshop, you will learn how to add security testing to a CI/CD pipeline of a dockerized .net (Unicorn Store) application using AWS CodeCommit, AWS CodeBuild, and AWS CodePipeline. The modules contained in this workshop will provide you with step-by-step instructions for committing, building, testing, and deploying software in an automation fashion. You will also learn about some basic security tests and where to instrument them in the software development lifecycle. 
+    In this workshop, you will learn how to use Contrast Security to find vulnerabilities in a sample application deployed on AWS Fargate. The deployment is managed with AWS CloudFormation.
 </p>
 
 ### Objectives
-- Gain familiarity with the workflow of a modern application
-- Learn where to add security testing to a CI/CD pipeline
-- Learn about AWS services used to orchestrate testing 
+- Learn the basics of aplication security
+- Gain familiarity with Contrast Security
+- Learn how to add security to an application deployed on AWS Fargate
 
 ### What we will cover in this workshop
-- Setup of a Cloud9 environment
+- Application security basics
+- How Contrast Security works
+- How to create an account to use Contrast Security Community Edition
+- How to use Contrast Security with an app deployed on AWS Fargate.
 - Usage of AWS CloudFormation to automate the deployment of infrastructure
-- Deployment of Amazon Elastic Container Service
-- Deploy and use a modenized pipeline using AWS CodePipeline, CodeCommit, and CodeBuild 
-- Instrument a couple of security testing/scanning tools
 
 ### Sample reference architecture
 
@@ -32,7 +33,7 @@ chapter: true
 ### Workshop flow
 
 <p style='text-align: left;'>
-    Each section or module contained in this workshop is designed to guide you through each step of the process to build the architecture referenced above. This is accomplished by using AWS Cloud 9 as our starting point along with a `git clone` of the content from our repository. Everything you need is provided to you including sample code, AWS CloudFormation templates, and detailed instructions. We will be using the AWS CLI from our Cloud9 instance to deploy the CloudFormation templates and build out our environment. 
+    Each section or module contained in this workshop is designed to guide you through each step of the process to build the architecture referenced above. This is accomplished by using AWS CloudFormation as our starting point. 
 </p>
 
 
