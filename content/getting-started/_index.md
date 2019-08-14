@@ -6,8 +6,8 @@ chapter = true
 pre = "<b>2. </b>"
 +++
 
-### Chapter X
 
-# Some Chapter title
 
-Lorem Ipsum.
+# Creating your environment
+
+{{% children showhidden="false" %}}
