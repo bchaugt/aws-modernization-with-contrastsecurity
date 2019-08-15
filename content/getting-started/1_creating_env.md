@@ -8,7 +8,9 @@ weight = 1
 You are responsible for the cost of the AWS services used while running this workshop in your AWS account.
 {{% /notice %}}
 
-In order for you to succeed in this workshop, you will need to run through a few steps in order to properly setup and configure your environment. These steps will include provisioning some services, installing some tools, and downloading some dependencies as well.
+In order for you to succeed in this workshop, you will need to run through a few steps in order to properly setup and configure your environment. These steps will include provisioning some services, installing some tools, and downloading some dependencies as well. Here is the AWS infrastructure we are going to build and use in thi workshop
+
+{{< figure src="/images/template1-designer.png" width="500" height="500">}}
 
 ### Clone the source repository for this workshop
 
@@ -21,7 +23,7 @@ git clone https://github.com/tbd.git
 ### Create Underlying VPC Infrastructure
 
 ```bash
-aws cloudformation create-stack --stack-name ContrastSecurityWorkshopVPC --template-body file:///$(pwd)/cfn/aws-workshop-vpc.yaml --capabilities CAPABILITY_NAMED_IAM
+aws cloudformation create-stack --stack-name ContrastSecurityWorkshopVPC --template-body file:///$(pwd)/cfn/contrast-aws-workshop-vpc.yaml --capabilities CAPABILITY_NAMED_IAM
 ```
 ### Check VPC Resource Creation Status
 
