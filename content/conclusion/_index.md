@@ -1,13 +1,13 @@
 +++
 title = "Conclusion"
 date = 2019-08-11T20:09:10-07:00
-weight = 50
+weight = 60
 chapter = true
-pre = "<b>3. </b>"
+pre = "<b>4. </b>"
 +++
 
-### Chapter X
 
-# Some Chapter title
+
+# Conclusion
 
 Lorem Ipsum.
