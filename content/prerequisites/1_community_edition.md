@@ -1,5 +1,5 @@
 +++
-title = "Setting up a Community Edition"
+title = "Setup a Contrast Security Community Edition Account"
 chapter = false
 weight = 1
 +++
