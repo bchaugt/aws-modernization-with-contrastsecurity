@@ -13,7 +13,7 @@ weight : 1
 </p>
 
 ### Objectives
-- Learn the basics of aplication security
+- Learn the basics of application security
 - Gain familiarity with Contrast Security
 - Learn how to add security to an application deployed on AWS Fargate
 
@@ -39,6 +39,6 @@ weight : 1
 
 {{% notice warning %}}
 <p style='text-align: left;'>
-The examples and sample code provided in this workshop are intended to be consumed as instructional content. These will help you understand how various AWS services can be architected to build a solution while demonstrating best practices along the way. These examples are not intended for use in production environments.
+The examples and sample code provided in this workshop are intended to be consumed as instructional content. These will help you understand how various AWS services can be architectured to build a solution while demonstrating best practices along the way. These examples are not intended for use in production environments.
 </p>
 {{% /notice %}}

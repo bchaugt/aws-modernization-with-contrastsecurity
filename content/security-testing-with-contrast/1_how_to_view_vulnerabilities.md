@@ -14,11 +14,11 @@ There are several options to acquire information about vulnerabilities in Contra
 ### Vulnerabilities in Contrast Security UI
 
 1. Log in Contrast Security Community Edition
-2. Click on Vulnerabilities in the top menu to see all vulnerabilites for all onboarded applications. In our case, it will be just for WebGoat:
+2. Click on Vulnerabilities in the top menu to see all vulnerabilities for all instrumented applications. In our case, it will be just for WebGoat:
 
 {{< figure src="/images/ce_view_vuln.png" style="border: 1px solid #000; max-width:auto; max-height:auto;">}}
 
-You can click on each vulnerabilites to get more information. Please note that we have done any work yet but still able to see some vulnerabilities that Contrast was able to identify.
+You can click on each vulnerabilities to get more information. Please note that we have done any work yet but still able to see some vulnerabilities that Contrast was able to identify.
 
 ### Getting access to vulnerabilities via UI
 

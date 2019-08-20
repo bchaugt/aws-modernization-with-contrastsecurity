@@ -10,7 +10,7 @@ pre = "<b>0. </b>"
 
 
 <p style='text-align: left;'>
-Contrast Security is an automated security testing solution that infuses software with vulnerabilitiy assessment capabilities so that security flaws are automatically identified. Contrast Security utilizes dynamic binary instrumentation to identify vulnerabilities in web applications and APIs. Organizations can use Contrast Assess to secure their applications without changing the application software stack, or how they build, test, or deploy code. The result is accurate, continuous vulnerability assessment that integrates seamlessly with existing software development and security processes, scales across the software development lifecycle and the entire application portfolio, and easily outpaces traditional solutions.
+Contrast Security is an automated security testing solution that infuses software with vulnerability assessment capabilities so that security flaws are automatically identified. Contrast Security utilizes dynamic binary instrumentation to identify vulnerabilities in web applications and APIs. Organizations can use Contrast Assess to secure their applications without changing the application software stack, or how they build, test, or deploy code. The result is accurate, continuous vulnerability assessment that integrates seamlessly with existing software development and security processes, scales across the software development lifecycle and the entire application portfolio, and easily outpaces traditional solutions.
 
 Contrast Assess neither scans nor attacks applications, but uses patented state-of-the-art deep security instrumentation technology to combine the most effective elements of static and dynamic testing, software composition and configuration analysis technologies, and deliver them directly into applications. As you can see on the following picture, Contrast instruments not just the custom code but other elements of the application as well proding far better coverage as compared with other application security solutions.
 
@@ -29,7 +29,7 @@ Traditional DAST tools try to exploit the running application with attacks, and 
 
 Contrast Security enables DevOps teams to deliver security-as-code by:
 
-- Empowring developers to embedd security as early as possible in the cycle
+- Empowering developers to embed security as early as possible in the cycle
 - Providing continuous vulnerability assessment throughout SDLC (see the following picture)
 - Automating security into the pipeline
 - Monitoring attacks the way you monitor performance

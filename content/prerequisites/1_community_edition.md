@@ -11,5 +11,5 @@ Contrast CE is a free application security platform for Java applications and AP
 {{< figure src="/images/ce_1.png" style="border: 1px solid #000; max-width:auto; max-height:auto;">}}
 3. Go to the second step:
 {{< figure src="/images/ce_2.png" style="border: 1px solid #000; max-width:auto; max-height:auto;">}}
-4. Donwload config file:
+4. Download config file:
 {{< figure src="/images/ce_3.png" style="border: 1px solid #000; max-width:auto; max-height:auto;">}}
