@@ -10,10 +10,10 @@ It is important to reiterate that Contrast Security identifies vulnerabilities b
 
 1. Log to Webgoat and navigate to Injection Flaws --> String SQL injection. Then please enter Smith or any other string into the field and click on Go button:
 
-{{< figure src="/images/wg_1.png" width="1000" height="500">}}
+{{< figure src="/images/wg_1.png" style="border: 1px solid #000; max-width:auto; max-height:auto;">}}
 
 2. Now let's go back to Contrast Security and click on Vulnerabilities. As you can see Contrast identified to new vulnerabilites: XSS and SQL injection. 
 
-{{< figure src="/images/ce_4.png" width="1000" height="500">}}
+{{< figure src="/images/ce_4.png" style="border: 1px solid #000; max-width:auto; max-height:auto;">}}
 
 Now you can click on either vulnerabilities to get more information.

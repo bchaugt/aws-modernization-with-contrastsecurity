@@ -35,4 +35,4 @@ Contrast Security enables DevOps teams to deliver security-as-code by:
 - Monitoring attacks the way you monitor performance
 
 
-{{< figure src="/images/contrast2.png" width="800" height="500">}}
+{{< figure src="/images/contrast2.png" style="border: 1px solid #000; max-width:auto; max-height:auto;">}}

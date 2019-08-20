@@ -8,7 +8,7 @@ Contrast Security also identifies third party components used in the application
 
 You can view libraries by clicking on Libraries in the top menu:
 
-{{< figure src="/images/ce_libraries.png" width="1000" height="500">}}
+{{< figure src="/images/ce_libraries.png" style="border: 1px solid #000; max-width:auto; max-height:auto;">}}
 
 Also this information available via API as well
 
