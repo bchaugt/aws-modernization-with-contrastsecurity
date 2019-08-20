@@ -1,5 +1,5 @@
 +++
-title = "Security Testing with Contrast"
+title = "DevSecOps with Contrast"
 date = 2019-08-11T20:05:56-07:00
 weight = 50
 chapter = true
