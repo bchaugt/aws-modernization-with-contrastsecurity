@@ -45,6 +45,14 @@ aws cloudformation create-stack --stack-name ContrastSecurityWorkshopECS --templ
 aws cloudformation create-stack-complete --stack-name ContrastSecurityWorkshopECS
 ```
 
+### Getting outputs
+
+You will need at least the Load balancer DNS to be able to access WebGoat. You can do it with this command:
+
+```bash
+aws cloudformation describe-stacks --stack-name ContrastSecurityWorkshopECS
+```
+
 ### Delete ECS Resources
 
 ```bash
