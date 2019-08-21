@@ -10,4 +10,6 @@ pre = "<b>4. </b>"
 
 # Conclusion
 
-Lorem Ipsum.
+In this final chapter we will review the work we have done and also discuss cleanup steps.
+
+{{% children showhidden="false" %}}

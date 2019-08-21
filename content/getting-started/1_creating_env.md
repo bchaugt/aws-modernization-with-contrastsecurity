@@ -53,8 +53,3 @@ You will need at least the Load balancer DNS to be able to access WebGoat. You c
 aws cloudformation describe-stacks --stack-name ContrastSecurityWorkshopECS
 ```
 
-### Delete ECS Resources
-
-```bash
-aws cloudformation delete-stack --stack-name ContrastSecurityWorkshopECS
-```

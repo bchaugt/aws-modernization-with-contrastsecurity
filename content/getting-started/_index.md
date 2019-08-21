@@ -9,5 +9,8 @@ pre = "<b>2. </b>"
 
 
 # Creating your environment
+<p style='text-align: left;'>
+In this chapter we will go through series of steps to build the environment we will be using during the workshop.
+</p>
 
 {{% children showhidden="false" %}}

@@ -9,5 +9,7 @@ pre = "<b>1. </b>"
 
 
 # Prerequisites
-
+<p style='text-align: left;'>
+In this chapter we will make sure that we have all the right pieces to build the infrastructure we will need in the workshop.
+</p>
 {{% children showhidden="false" %}}

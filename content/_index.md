@@ -24,12 +24,6 @@ weight : 1
 - How to use Contrast Security with an app deployed on AWS Fargate.
 - Usage of AWS CloudFormation to automate the deployment of infrastructure
 
-### Sample reference architecture
-
-<p style='text-align: left;'>
-    At the conclusion of this workshop, you will end up with various AWS services provisioned in your AWS account. The following diagram illustrates some of these services and is intended as a sample reference architecture.
-</p>
-
 ### Workshop flow
 
 <p style='text-align: left;'>
