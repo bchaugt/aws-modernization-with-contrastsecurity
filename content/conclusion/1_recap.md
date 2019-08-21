@@ -12,6 +12,7 @@ Congratulations. You have completed this workshop on how to enable DevSecOps wit
 - Learned how to deploy Contrast agent in application deployed on AWS Fargate
 - Learned how to view existing vulnerabilities in Contrast
 - Learned how Contrast reports new vulnerability
+- Learned how Contrast blocks SQL injection attack
 - Learned about SCA capabilities that Contrast provides
 
 ### Final Thoughts
