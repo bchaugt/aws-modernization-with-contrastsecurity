@@ -12,6 +12,16 @@ weight : 1
     In this workshop, you will learn how to use Contrast Security to find vulnerabilities in a sample application deployed on AWS Fargate. The deployment is managed with AWS CloudFormation.
 </p>
 
+### Key Concepts
+<p style='text-align: left;'>
+Before we get started,let's make sure we define and explain the main concepts and objects we will be dealing in this workshop:
+</p>
+
+- AWS (Amazon Web Services) - a collection of cloud computing services. We will talk in detail about how to create necessary AWS infrastructure in [this section] ({{< ref"/prerequisites/2_create_aws_account.md" >}}).
+- Contrast Security - a modern application security tool build for DevSecOps, more about it [here] ({{< ref"/about-contrast" >}}).
+- WebGoat - A deliberately vulnerable web application developed by OWASP. You can find more information [here] (https://www.owasp.org/index.php/Category:OWASP_WebGoat_Projectx)
+
+
 ### Objectives
 - Learn the basics of application security
 - Gain familiarity with Contrast Security
