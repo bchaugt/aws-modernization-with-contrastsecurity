@@ -1,4 +1,28 @@
-baseURL = "http://example.org/"
+baseURL = "http://localhost"
 languageCode = "en-us"
-title = "My New Hugo Site"
-theme = "hugo-theme-learn"
+defaultContentLanguage = "en"
+title = "AWS DevSecOps Modernization Workshop"
+theme = "learn"
+uglyurls = true
+googleAnalytics = "UA-136137356-1"
+sectionPagesMenu = "main"
+pygmentsCodeFences = true
+
+[blackfriday]
+hrefTargetBlank = true
+
+[params]
+themeVariant = "mine"
+showVisitedLinks = false
+author = "James Bland"
+description = "AWS DevSecOps Modernization Workshop"
+disableSearch = false
+disableAssetsBusting = false
+disableLanguageSwitchingButton = true
+disableShortcutsTitle=true
+
+
+
+[outputs]
+home = [ "HTML", "AMP", "RSS", "JSON"]
+page = [ "HTML", "AMP"]
