@@ -26,7 +26,18 @@ Now we want to clone the repository that contains all the content and files you 
 
 ```bash
 cd ~/environment && \
-git clone https://github.com/tbd.git
+git clone https://github.com/aws-samples/aws-modernization-with-contrastsecurity.git
+```
+### Create Underlying VPC Infrastructure
+
+```bash
+aws cloudformation create-stack --stack-name ContrastSecurityWorkshopVPC --template-body file:///$(pwd)/cfn/aws-workshop-vpc.yaml --capabilities CAPABILITY_NAMED_IAM
+```
+
+### Check VPC Resource Creation Status
+
+```bash
+aws cloudformation wait stack-create-complete --stack-name ContrastSecurityWorkshopVPC
 ```
 
 ### Configure ECS Stack Parameters
