@@ -1,0 +1,22 @@
+[
+    {
+        "ParameterKey": "StackNameVPC",
+        "ParameterValue": "ContrastSecurityWorkshopVPC"
+    },
+    {
+        "ParameterKey": "ContrastURL",
+        "ParameterValue": "https://ce.contrastsecurity.com/Contrast"
+    },
+    {
+        "ParameterKey": "ContrastApiKey",
+        "ParameterValue": ""
+    },
+    {
+        "ParameterKey": "ContrastServiceKey",
+        "ParameterValue": ""
+    },
+    {
+        "ParameterKey": "ContrastUserName",
+        "ParameterValue": ""
+    }
+]

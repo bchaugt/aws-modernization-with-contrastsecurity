@@ -1,0 +1,269 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: This template will launch ECS for the Contrast AWS Workshop.
+
+Parameters:
+  StackNameVPC:
+    Type: String
+    Description: VPC stack to import values from
+    Default: ContrastSecurityWorkshopVPC
+
+  ContrastURL:
+    Type: String
+    Description: TeamServer URL to use for connection. Defaults to Community Edition.
+    Default: https://ce.contrastsecurity.com/Contrast
+  ContrastApiKey:
+    Type: String
+    NoEcho: true
+    Description: Set the API key needed to communicate with the Contrast UI. This sets an environment variable in the Task Definition.
+
+  ContrastServiceKey:
+    Type: String
+    NoEcho: true
+    Description: Set the service key needed to communicate with the Contrast UI. This sets an environment variable in the Task Definition.
+
+  ContrastUserName:
+    Type: String
+    NoEcho: true
+    Description: Set the user name used to communicate with the Contrast UI. This sets an environment variable in the Task Definition.
+
+Resources:
+  ContrastApiKeySecret:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Description: Contrast API Key
+      Name: ContrastApiKeySecret
+      SecretString: 
+        Ref: ContrastApiKey
+  
+  ContrastServiceKeySecret:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Description: Contrast Service Key
+      Name: ContrastServiceKeySecret
+      SecretString: 
+        Ref: ContrastServiceKey
+
+  ContrastUserNameSecret:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Description: Contrast User Name
+      Name: ContrastUserNameSecret
+      SecretString: 
+        Ref: ContrastUserName
+
+  ContrastSecretsManagerPolicy:
+    Type: AWS::IAM::Policy
+    Properties: 
+      PolicyName: ContrastSecretsManagerPolicy
+      Roles:
+      - ContrastAWSWorkshopECSExecutionRole
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action:
+            - secretsmanager:GetSecretValue
+            Resource:
+            - Ref: ContrastApiKeySecret
+            - Ref: ContrastServiceKeySecret
+            - Ref: ContrastUserNameSecret
+
+  ContrastAWSWorkshopLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: ContrastSecurityAWSWorkshop
+      RetentionInDays: 30
+ 
+  ECSCluster:
+    Type: AWS::ECS::Cluster
+    Properties:
+      ClusterName: ContrastAWSWorkshopCluster
+
+  TaskExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement: 
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal: 
+              Service: ecs-tasks.amazonaws.com
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+        - arn:aws:iam::aws:policy/CloudWatchLogsFullAccess
+        - arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
+        - arn:aws:iam::aws:policy/SecretsManagerReadWrite
+      RoleName: ContrastAWSWorkshopECSExecutionRole
+
+  TaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties: 
+      Family: ContrastAWSWorkshop
+      Cpu: 1024
+      Memory: 2048
+      NetworkMode: awsvpc
+      ExecutionRoleArn:
+        Ref: TaskExecutionRole
+      TaskRoleArn: ContrastAWSWorkshopECSExecutionRole
+      RequiresCompatibilities: 
+        - "FARGATE"
+      ContainerDefinitions: 
+        - Name: contrast-aws-workshop-webgoat
+          # TODO: Need to replace with ECR CF reference
+          Image: 771960604435.dkr.ecr.us-east-1.amazonaws.com/webgoat-test:latest
+          Cpu: 1024
+          Memory: 2048
+          Environment:
+            - Name: CONTRAST_URL
+              Value:
+                Ref: ContrastURL
+          Secrets:
+            - Name: CONTRAST_API_KEY
+              ValueFrom: 
+                Ref: ContrastApiKeySecret
+            - Name: CONTRAST_SERVICE_KEY
+              ValueFrom: 
+                Ref: ContrastServiceKeySecret
+            - Name: CONTRAST_USER_NAME
+              ValueFrom: 
+                Ref: ContrastUserNameSecret
+          LogConfiguration:
+            LogDriver: "awslogs"
+            Options:
+              awslogs-group: ContrastSecurityAWSWorkshop
+              awslogs-region: 
+                Ref: AWS::Region
+              awslogs-stream-prefix: ecs         
+          MemoryReservation: 2048
+          PortMappings: 
+            - ContainerPort: 80
+              HostPort: 80
+              Protocol: tcp
+  
+  TaskSecurityGroup:
+    Type: "AWS::EC2::SecurityGroup"
+    Properties:
+      GroupName: WebGoatTaskSecurityGroup
+      GroupDescription: Security group the the WebGoat Fargate Task
+      VpcId: 
+        Fn::ImportValue: 
+          Fn::Sub: ${StackNameVPC}:VPCId
+
+  TaskSecurityGroupIngress:
+    Type: "AWS::EC2::SecurityGroupIngress"
+    Properties:
+      GroupId: 
+        Ref: TaskSecurityGroup
+      IpProtocol: tcp
+      FromPort: 80
+      ToPort: 80
+      SourceSecurityGroupId:
+        Ref: WebGoatLoadBalancerSecurityGroup    
+
+  FargateWebAppService:
+    Type: AWS::ECS::Service
+    DependsOn: WebGoatHTTPlistener
+    Properties:
+      Cluster:
+        Ref: ECSCluster
+      DesiredCount: 1
+      TaskDefinition: 
+        Ref: TaskDefinition
+      LaunchType: FARGATE
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: ENABLED
+          SecurityGroups:
+            - Ref: TaskSecurityGroup
+          Subnets: 
+            - Fn::ImportValue:
+                Fn::Sub: ${StackNameVPC}:PublicSubnet1
+            - Fn::ImportValue:
+                Fn::Sub: ${StackNameVPC}:PublicSubnet2
+      LoadBalancers:
+        - ContainerName: contrast-aws-workshop-webgoat
+          ContainerPort: 80
+          TargetGroupArn: 
+            Ref: WebGoatTargetGroup
+      ServiceName: ContrastAWSWorkshop-FargateWebAppService
+
+  WebGoatLoadBalancerSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: WebGoatLoadBalancerSecurityGroup
+      GroupDescription: Security group for the the WebGoat Application Load Balancer
+      SecurityGroupIngress:
+        - CidrIp: 0.0.0.0/0
+          IpProtocol: TCP
+          FromPort: 80
+          ToPort: 80
+      VpcId: 
+        Fn::ImportValue:
+          Fn::Sub: ${StackNameVPC}:VPCId
+
+  WebGoatLoadBalancer:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Name: WebGoatLoadBalancer
+      Scheme: internet-facing
+      SecurityGroups:
+        - Ref: WebGoatLoadBalancerSecurityGroup
+      Subnets:
+        - Fn::ImportValue:
+            Fn::Sub: ${StackNameVPC}:PublicSubnet1
+        - Fn::ImportValue:
+            Fn::Sub: ${StackNameVPC}:PublicSubnet2
+      Tags:
+        - Key: Name
+          Value: WebGoat-LB
+      Type: application
+      IpAddressType: ipv4
+
+  WebGoatTargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    DependsOn: WebGoatLoadBalancer
+    Properties:
+      Name: WebGoatTargetGroup
+      VpcId: 
+        Fn::ImportValue:
+          Fn::Sub: ${StackNameVPC}:VPCId
+      Port: 80
+      Protocol: HTTP
+      HealthCheckEnabled: true
+      HealthCheckIntervalSeconds: 60
+      HealthCheckPath: /WebGoat/login.mvc
+      HealthCheckPort: 80
+      HealthCheckProtocol: HTTP
+      HealthCheckTimeoutSeconds: 30
+      HealthyThresholdCount: 5
+      UnhealthyThresholdCount: 2
+      TargetType: ip
+      Matcher:
+        HttpCode: 200-299
+
+  WebGoatHTTPlistener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      LoadBalancerArn:
+        Ref: WebGoatLoadBalancer
+      Port: 80
+      Protocol: HTTP
+      DefaultActions:
+        - Type: forward
+          TargetGroupArn:
+            Ref: WebGoatTargetGroup
+
+Outputs:
+  Service:
+    Value:
+      Ref: FargateWebAppService
+  
+  WebGoatTargetGroup:
+    Value:
+      Ref: WebGoatTargetGroup
+
+  LoadBalancerDNS:
+    Description: DNS of the load balancer connected to WebGoat running in Fargate.
+    Value:
+      Fn::Sub: ${WebGoatLoadBalancer.DNSName}

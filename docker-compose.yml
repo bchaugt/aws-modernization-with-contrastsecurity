@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  app:
+    image: webgoat-test
+    ports:
+      - "80"
+    environment:
+      - CONTRAST_URL=https://ce.contrastsecurity.com/Contrast
+      - CONTRAST_API_KEY=<YOUR_CONTRAST_API_KEY>
+      - CONTRAST_SERVICE_KEY=<YOUR_CONTRAST_SERVICE_KEY>
+      - CONTRAST_USER_NAME=<YOUR_CONTRAST_USER_NAME>
+      - CONTRAST_APP_NAME=WebGoat
