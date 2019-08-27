@@ -10,15 +10,18 @@ You are responsible for the cost of the AWS services used while running this wor
 
 In order for you to succeed in this workshop, you will need to run through a few steps in order to properly setup and configure your environment. These steps will include provisioning some services, installing some tools, and downloading some dependencies as well. Here is the AWS infrastructure we are going to build and use in this workshop:
 
-- CloudWatch logs group
-- Contrast Security API keys will be stored in Secrets Manager
-- We will be using using existing ECR project (WebGoat 7)
-- Fargate service
-- Load balancer
-- We will be using existing VPC infrastructure 
+1. Task Execution Role
+2. Contrast Security API keys will be stored in Secrets Manager
+3. Contrast Secrets Manager Policy
+4. CloudWatch logs group
+5. ECS Cluster
+6. EC2 Security Group
+7. Task Definition
+8. Fargate WebApp Service
+9. Load balancer
 
 
-{{< figure src="/images/template1-designer.png" width="500" height="500">}}
+{{< figure src="/images/aws_inf.png" width="600" height="500">}}
 
 ### Clone the source repository for this workshop
 
