@@ -21,8 +21,8 @@ FROM openjdk:8-alpine3.9
 WORKDIR /app
 COPY --from=webgoat-builder /webgoat/webgoat-container/target/webgoat-container-7.1-war-exec.jar ./webgoat-container-7.1-war-exec.jar
 COPY --from=contrast-downloader /opt/contrast/contrast.jar /opt/contrast/contrast.jar
+COPY ./contrast_security.yaml.tpl /opt/contrast/contrast_security.yaml.tpl
 COPY ./entrypoint.sh /app/entrypoint.sh
-
 
 ENTRYPOINT ["/app/entrypoint.sh"]
 CMD ["--httpPort", "80"]
