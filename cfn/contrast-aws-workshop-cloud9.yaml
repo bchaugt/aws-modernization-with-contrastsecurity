@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: This template will launch a Cloud9 IDE for the Contrast AWS Workshop.
+Parameters:
+  VPCstack:
+    Type: String
+    Description: VPC stack to import values from
+    Default: ContrastSecurityWorkshopVPC
+Resources:
+  WorkshopIDE:
+    Type: "AWS::Cloud9::EnvironmentEC2"
+    Properties:
+      Description: "Cloud9 Browser Based IDE for the Contrast AWS Workshop."
+      AutomaticStopTimeMinutes: 60
+      InstanceType: t2.small
+      SubnetId: 
+        Fn::ImportValue: 
+          Fn::Sub: "${VPCstack}:PublicSubnet1"
+Outputs:
+  Cloud9IDE:
+    Description: "The IDE Login URL"
+    Value:
+      Fn::Sub: "https://${AWS::Region}.console.aws.amazon.com/cloud9/ide/${WorkshopIDE}"
