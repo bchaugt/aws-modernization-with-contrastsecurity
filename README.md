@@ -15,7 +15,7 @@ Visit https://gohugo.io/getting-started/installing/ for detailed instructions.
 
 ### Clone this repo
 
-`git clone --recursive https://zapel@bitbucket.org/contrastsecurity/aws-workshop-hugo.git`
+`git clone --recursive https://github.com/epakhomov/aws-modernization-with-contrastsecurity.git`
 
 ### Install node packages
 
