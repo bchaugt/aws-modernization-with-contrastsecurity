@@ -19,7 +19,7 @@ Visit https://gohugo.io/getting-started/installing/ for detailed instructions.
 
 ### Install node packages
 
-`cd aws-workshop-hugo`
+`cd aws-modernization-with-contrastsecurity`
 
 `hugo server`
 
