@@ -110,8 +110,7 @@ Resources:
         - "FARGATE"
       ContainerDefinitions: 
         - Name: contrast-aws-workshop-webgoat
-          # TODO: Need to replace with ECR CF reference
-          Image: 771960604435.dkr.ecr.us-east-1.amazonaws.com/webgoat-test:latest
+          Image: contrastpublic/contrast-aws-workshop-webgoat:latest
           Cpu: 1024
           Memory: 2048
           Environment:
